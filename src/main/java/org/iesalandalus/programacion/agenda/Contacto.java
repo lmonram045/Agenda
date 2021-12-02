@@ -11,6 +11,16 @@ public class Contacto {
     private String telefono;
     private String correo;
 
+    public Contacto(String nombre, String telefono, String correo) {
+        setNombre(nombre);
+        this.nombre = nombre;
+
+        setTelefono(telefono);
+        this.telefono = telefono;
+
+        setCorreo(correo);
+        this.correo = correo;
+    }
 
     public String getNombre() {
         return nombre;
@@ -42,9 +52,7 @@ public class Contacto {
         Matcher matcher = pattern.matcher(telefono);
 
         if (!matcher.matches()) {
-
             throw new IllegalArgumentException("El teléfono no tiene un formato válido.");
-
         }
 
         this.telefono = telefono;
@@ -60,6 +68,14 @@ public class Contacto {
 
         if (correo == null)
             throw new NullPointerException("El correo de un contacto no puede ser nulo o vacío.");
+
+        Pattern pattern = Pattern.compile(ER_CORREO);
+
+        Matcher matcher = pattern.matcher(correo);
+
+        if (!matcher.matches()) {
+            throw new IllegalArgumentException("El correo no tiene un formato válido.");
+        }
 
         this.correo = correo;
     }
